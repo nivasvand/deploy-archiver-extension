@@ -9,7 +9,7 @@
   </parent>
 
   <groupId>com.soebes.maven.extensions</groupId>
-  <artifactId>maven-single-deployer</artifactId>
+  <artifactId>deploy-archiver-extension</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
   <name>The Maven Single Deployer.</name>
@@ -26,19 +26,19 @@
   <!-- Must be overwritten in every project. -->
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/khmarbaise/maven-single-deployer/issues</url>
+    <url>https://github.com/khmarbaise/deploy-archiver-extension/issues</url>
   </issueManagement>
 
   <distributionManagement>
     <site>
       <id>github</id>
-      <url>scm:git:git@github.com:khmarbaise/maven-deployer-extension.git</url>
+      <url>scm:git:git@github.com:khmarbaise/deploy-archiver-extension.git</url>
     </site>
   </distributionManagement>
   <scm>
-    <developerConnection>scm:git:ssh://git@github.com/khmarbaise/maven-deployer-extension.git</developerConnection>
-    <connection>scm:git:https://github.com/khmarbaise/maven-deployer-extension.git</connection>
-    <url>https://github.com/khmarbaise/maven-deployer-extension/</url>
+    <developerConnection>scm:git:ssh://git@github.com/khmarbaise/deploy-archiver-extension.git</developerConnection>
+    <connection>scm:git:https://github.com/khmarbaise/deploy-archiver-extension.git</connection>
+    <url>https://github.com/khmarbaise/deploy-archiver-extension</url>
     <tag>HEAD</tag>
   </scm>
 
