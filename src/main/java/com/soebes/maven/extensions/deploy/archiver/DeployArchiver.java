@@ -1,7 +1,5 @@
 package com.soebes.maven.extensions.deploy.archiver;
 
-import java.io.File;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -52,7 +50,7 @@ import org.eclipse.aether.RepositoryEvent.EventType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.soebes.maven.extensions.deployer.MavenDeployerExtensionVersion;
+import java.io.File;
 
 /**
  * 
@@ -95,7 +93,7 @@ public class DeployArchiver
     private void logDeployerVersion()
     {
         LOGGER.info( "" );
-        LOGGER.info( " --- maven-single-packager:{} --- ", MavenDeployerExtensionVersion.getVersion() );
+        LOGGER.info( " --- deploy-archiver-extension:{} --- ", MavenDeployerExtensionVersion.getVersion() );
     }
 
     @Override
