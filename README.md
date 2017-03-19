@@ -1,5 +1,5 @@
-Deply Archiver Extension
-========================
+Deploy Archiver Extension
+=========================
 
 [![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/khmarbaise/deploy-archiver-extension.svg?label=License)](http://www.apache.org/licenses/)
 [![Maven Central](https://img.shields.io/maven-central/v/com.soebes.maven.extensions/deploy-archiver-extensio.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.soebes.maven.extensions%22%20a%3A%22deploy-archiver-extensio%22)
