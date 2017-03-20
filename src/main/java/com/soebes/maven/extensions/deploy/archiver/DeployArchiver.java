@@ -206,7 +206,7 @@ public class DeployArchiver
             case SessionEnded:
                 if ( this.failure )
                 {
-                    LOGGER.warn( "The Maven Deployer Extension will not be called based on previous errors." );
+                    LOGGER.warn( "The Deploye Archiver Extension will not be called based on previous errors." );
                 }
                 else
                 {
