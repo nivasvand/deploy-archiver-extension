@@ -161,8 +161,8 @@ public class DeployArchiver
             case METADATA_INSTALLING:
                 break;
             case METADATA_INSTALLED:
-                // This one as well..
-                artifactInstalledMetadata( repositoryEvent );
+                // I'M not sure if this is really needed.
+                // artifactInstalledMetadata( repositoryEvent );
                 break;
 
             case ARTIFACT_RESOLVING:
@@ -176,7 +176,7 @@ public class DeployArchiver
                 break;
 
             default:
-                LOGGER.error( "MBTP: repositoryEventHandler {}", type );
+                LOGGER.error( "repositoryEventHandler {}", type );
                 break;
         }
     }
@@ -185,7 +185,7 @@ public class DeployArchiver
     public void close()
     {
         // TODO: Check if we need to do something here?
-        LOGGER.debug( "Maven Deployer Extension." );
+        LOGGER.debug( "Deploy Archiver Extension." );
     }
 
     private boolean goalsContain( ExecutionEvent executionEvent, String goal )
