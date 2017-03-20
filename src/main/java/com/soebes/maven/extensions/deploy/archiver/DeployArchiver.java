@@ -121,7 +121,7 @@ public class DeployArchiver
     private void artifactInstalled( RepositoryEvent event )
     {
         LOGGER.info( "artifactInstalled: " + event.getFile() +  " Name: " + event.getFile().getName() );
-        tarArchiver.addFile( event.getFile(), event.getArtifact().getGroupId() + "/" + event.getFile().getName() );
+        tarArchiver.addFile( event.getFile(), event.getArtifact().getGroupId() + "/" + event.getArtifact().getArtifactId() + "/" + event.getFile().getName() );
     }
     private void artifactInstalledMetadata( RepositoryEvent event )
     {
@@ -386,7 +386,7 @@ public class DeployArchiver
         // tarArchiver.addFileSet( new DefaultFileSet( targetDirectory ) );
 
         File resultArchive =
-            getArchiveFile( exec.getSession().getTopLevelProject().getBasedir(), "archive", "test", "tar" );
+            getArchiveFile( exec.getSession().getTopLevelProject().getBasedir(), ".archive", "bundle", "tar" );
 
         tarArchiver.setDestFile( resultArchive );
         tarArchiver.setCompression( TarCompressionMethod.none );
