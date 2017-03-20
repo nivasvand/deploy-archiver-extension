@@ -255,16 +255,16 @@ public class DeployArchiver
 
         installProjects( executionEvent );
         
-        if ( goalsContain( executionEvent, "deploy" ) )
-        {
-            LOGGER.info( "" );
-            LOGGER.info( "Deploying artifacts..." );
-            deployProjects( executionEvent );
-        }
-        else
-        {
-            LOGGER.info( " skipping." );
-        }
+//        if ( goalsContain( executionEvent, "deploy" ) )
+//        {
+//            LOGGER.info( "" );
+//            LOGGER.info( "Deploying artifacts..." );
+//            deployProjects( executionEvent );
+//        }
+//        else
+//        {
+//            LOGGER.info( " skipping." );
+//        }
     }
 
     private void sessionStarted( ExecutionEvent executionEvent )
@@ -363,23 +363,23 @@ public class DeployArchiver
         }
     }
 
-    private void deployProjects( ExecutionEvent executionEvent )
-    {
-        // Assumption is to have the distributionManagement in the top level
-        // pom file located.
-        ArtifactRepository repository =
-            executionEvent.getSession().getTopLevelProject().getDistributionManagementArtifactRepository();
-
-        List<MavenProject> sortedProjects = executionEvent.getSession().getProjectDependencyGraph().getSortedProjects();
-        for ( MavenProject mavenProject : sortedProjects )
-        {
-            ProjectDeployerRequest deployRequest =
-                new ProjectDeployerRequest().setProject( mavenProject ).setUpdateReleaseInfo( true );
-
-            deployProject( executionEvent.getSession().getProjectBuildingRequest(), deployRequest, repository );
-        }
-    }
-
+//    private void deployProjects( ExecutionEvent executionEvent )
+//    {
+//        // Assumption is to have the distributionManagement in the top level
+//        // pom file located.
+//        ArtifactRepository repository =
+//            executionEvent.getSession().getTopLevelProject().getDistributionManagementArtifactRepository();
+//
+//        List<MavenProject> sortedProjects = executionEvent.getSession().getProjectDependencyGraph().getSortedProjects();
+//        for ( MavenProject mavenProject : sortedProjects )
+//        {
+//            ProjectDeployerRequest deployRequest =
+//                new ProjectDeployerRequest().setProject( mavenProject ).setUpdateReleaseInfo( true );
+//
+//            deployProject( executionEvent.getSession().getProjectBuildingRequest(), deployRequest, repository );
+//        }
+//    }
+//
     private void installProjects( ExecutionEvent exec )
     {
 
@@ -416,25 +416,25 @@ public class DeployArchiver
 
     }
 
-    private void deployProject( ProjectBuildingRequest projectBuildingRequest, ProjectDeployerRequest deployRequest,
-                                ArtifactRepository repository )
-    {
-
-        try
-        {
-            projectDeployer.deploy( projectBuildingRequest, deployRequest, repository );
-        }
-        catch ( IOException e )
-        {
-            LOGGER.error( "IOException", e );
-        }
-        catch ( NoFileAssignedException e )
-        {
-            LOGGER.error( "NoFileAssignedException", e );
-        }
-
-    }
-
+//    private void deployProject( ProjectBuildingRequest projectBuildingRequest, ProjectDeployerRequest deployRequest,
+//                                ArtifactRepository repository )
+//    {
+//
+//        try
+//        {
+//            projectDeployer.deploy( projectBuildingRequest, deployRequest, repository );
+//        }
+//        catch ( IOException e )
+//        {
+//            LOGGER.error( "IOException", e );
+//        }
+//        catch ( NoFileAssignedException e )
+//        {
+//            LOGGER.error( "NoFileAssignedException", e );
+//        }
+//
+//    }
+//
     private void installProject( ProjectBuildingRequest pbr, ProjectInstallerRequest pir )
     {
         try
