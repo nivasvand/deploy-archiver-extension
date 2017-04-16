@@ -53,7 +53,6 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 
 /**
- * 
  * @author Karl Heinz Marbaise <a href="mailto:khmarbaise@apache.org">khmarbaise@apache.org</a>
  */
 @Singleton
@@ -120,13 +119,15 @@ public class DeployArchiver
 
     private void artifactInstalled( RepositoryEvent event )
     {
-        LOGGER.info( "artifactInstalled: " + event.getFile() +  " Name: " + event.getFile().getName() );
-        tarArchiver.addFile( event.getFile(), event.getArtifact().getGroupId() + "/" + event.getArtifact().getArtifactId() + "/" + event.getFile().getName() );
+        LOGGER.info( "artifactInstalled: " + event.getFile() + " Name: " + event.getFile().getName() );
+        tarArchiver.addFile( event.getFile(), event.getArtifact().getGroupId() + "/"
+            + event.getArtifact().getArtifactId() + "/" + event.getFile().getName() );
     }
+
     private void artifactInstalledMetadata( RepositoryEvent event )
     {
         event.getSession().getLocalRepository().getBasedir();
-        LOGGER.info( "artifactInstalledMetadata: " + event.getFile() +  " Name: " + event.getFile().getName() );
+        LOGGER.info( "artifactInstalledMetadata: " + event.getFile() + " Name: " + event.getFile().getName() );
         tarArchiver.addFile( event.getFile(), event.getMetadata().getGroupId() + "/" + event.getFile().getName() );
     }
 
@@ -254,45 +255,30 @@ public class DeployArchiver
         LOGGER.info( "Packaging installable artifacts..." );
 
         installProjects( executionEvent );
-        
-//        if ( goalsContain( executionEvent, "deploy" ) )
-//        {
-//            LOGGER.info( "" );
-//            LOGGER.info( "Deploying artifacts..." );
-//            deployProjects( executionEvent );
-//        }
-//        else
-//        {
-//            LOGGER.info( " skipping." );
-//        }
+
+        // if ( goalsContain( executionEvent, "deploy" ) )
+        // {
+        // LOGGER.info( "" );
+        // LOGGER.info( "Deploying artifacts..." );
+        // deployProjects( executionEvent );
+        // }
+        // else
+        // {
+        // LOGGER.info( " skipping." );
+        // }
     }
 
     private void sessionStarted( ExecutionEvent executionEvent )
     {
-        if ( containsLifeCycleDeployPluginGoal( executionEvent, "deploy" ) )
-        {
-            removeDeployPluginFromLifeCycle( executionEvent );
-        }
-
         if ( containsLifeCycleInstallPluginGoal( executionEvent, "install" ) )
         {
             removeInstallPluginFromLifeCycle( executionEvent );
         }
     }
 
-    private boolean containsLifeCycleDeployPluginGoal( ExecutionEvent executionEvent, String goal )
-    {
-        return containsLifeCyclePluginGoals( executionEvent, "org.apache.maven.plugins", "maven-deploy-plugin", goal );
-    }
-
     private boolean containsLifeCycleInstallPluginGoal( ExecutionEvent executionEvent, String goal )
     {
         return containsLifeCyclePluginGoals( executionEvent, "org.apache.maven.plugins", "maven-install-plugin", goal );
-    }
-
-    private void removeDeployPluginFromLifeCycle( ExecutionEvent executionEvent )
-    {
-        removePluginFromLifeCycle( executionEvent, "org.apache.maven.plugins", "maven-deploy-plugin", "deploy" );
     }
 
     private void removeInstallPluginFromLifeCycle( ExecutionEvent executionEvent )
@@ -363,23 +349,23 @@ public class DeployArchiver
         }
     }
 
-//    private void deployProjects( ExecutionEvent executionEvent )
-//    {
-//        // Assumption is to have the distributionManagement in the top level
-//        // pom file located.
-//        ArtifactRepository repository =
-//            executionEvent.getSession().getTopLevelProject().getDistributionManagementArtifactRepository();
-//
-//        List<MavenProject> sortedProjects = executionEvent.getSession().getProjectDependencyGraph().getSortedProjects();
-//        for ( MavenProject mavenProject : sortedProjects )
-//        {
-//            ProjectDeployerRequest deployRequest =
-//                new ProjectDeployerRequest().setProject( mavenProject ).setUpdateReleaseInfo( true );
-//
-//            deployProject( executionEvent.getSession().getProjectBuildingRequest(), deployRequest, repository );
-//        }
-//    }
-//
+    // private void deployProjects( ExecutionEvent executionEvent )
+    // {
+    // // Assumption is to have the distributionManagement in the top level
+    // // pom file located.
+    // ArtifactRepository repository =
+    // executionEvent.getSession().getTopLevelProject().getDistributionManagementArtifactRepository();
+    //
+    // List<MavenProject> sortedProjects = executionEvent.getSession().getProjectDependencyGraph().getSortedProjects();
+    // for ( MavenProject mavenProject : sortedProjects )
+    // {
+    // ProjectDeployerRequest deployRequest =
+    // new ProjectDeployerRequest().setProject( mavenProject ).setUpdateReleaseInfo( true );
+    //
+    // deployProject( executionEvent.getSession().getProjectBuildingRequest(), deployRequest, repository );
+    // }
+    // }
+    //
     private void installProjects( ExecutionEvent exec )
     {
 
@@ -390,7 +376,7 @@ public class DeployArchiver
 
         tarArchiver.setDestFile( resultArchive );
         tarArchiver.setCompression( TarCompressionMethod.none );
-        tarArchiver.setLongfile( TarLongFileMode.posix );
+        tarArchiver.setLongfile( TarLongFileMode.gnu );
 
         List<MavenProject> sortedProjects = exec.getSession().getProjectDependencyGraph().getSortedProjects();
         for ( MavenProject mavenProject : sortedProjects )
@@ -416,25 +402,25 @@ public class DeployArchiver
 
     }
 
-//    private void deployProject( ProjectBuildingRequest projectBuildingRequest, ProjectDeployerRequest deployRequest,
-//                                ArtifactRepository repository )
-//    {
-//
-//        try
-//        {
-//            projectDeployer.deploy( projectBuildingRequest, deployRequest, repository );
-//        }
-//        catch ( IOException e )
-//        {
-//            LOGGER.error( "IOException", e );
-//        }
-//        catch ( NoFileAssignedException e )
-//        {
-//            LOGGER.error( "NoFileAssignedException", e );
-//        }
-//
-//    }
-//
+    // private void deployProject( ProjectBuildingRequest projectBuildingRequest, ProjectDeployerRequest deployRequest,
+    // ArtifactRepository repository )
+    // {
+    //
+    // try
+    // {
+    // projectDeployer.deploy( projectBuildingRequest, deployRequest, repository );
+    // }
+    // catch ( IOException e )
+    // {
+    // LOGGER.error( "IOException", e );
+    // }
+    // catch ( NoFileAssignedException e )
+    // {
+    // LOGGER.error( "NoFileAssignedException", e );
+    // }
+    //
+    // }
+    //
     private void installProject( ProjectBuildingRequest pbr, ProjectInstallerRequest pir )
     {
         try
